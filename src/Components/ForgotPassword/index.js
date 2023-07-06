@@ -26,20 +26,20 @@ const ForgotPassword = () => {
             
             {!isEmailSent ?
                 <form onSubmit={handleSubmit}>
-                <div class="card1 text-center" >
-                <div class="card1-header h2 text-white bg-primary">Password Reset</div>
-                <div class="card1-body px-5">
-                    <p class="card1-text py-2">
+                <div className="card1 text-center" >
+                <div className="card1-header h2 text-white bg-primary">Password Reset</div>
+                <div className="card1-body px-5">
+                    <p className="card1-text py-2">
                         Enter your email address and we'll send you an email with Reset password link.
                     </p>
-                    <div class="form-outline">
-                        <input type="email" id="typeEmail" value={email} onChange={(e) => setEmail(e.target.value)} class="form-control my-3" />
-                        <label class="form-label"  >Enter Your Email</label>
+                    <div className="form-outline">
+                        <input type="email" id="typeEmail" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control my-3" />
+                        <label className="form-label"  >Enter Your Email</label>
                     </div>
-                    <button type="submit" class="btn btn-primary w-60">Submit</button>
-                    <div class="d-flex justify-content-between mt-4">
-                        <a class="" href="/login">Login</a>
-                        <a class="" href="/register">Register</a>
+                    <button type="submit" className="btn btn-primary w-60">Submit</button>
+                    <div className="d-flex justify-content-between mt-4">
+                        <a className="" href="/login">Login</a>
+                        <a className="" href="/register">Register</a>
                     </div>
                 </div>
             </div> </form> :

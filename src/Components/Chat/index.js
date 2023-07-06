@@ -40,39 +40,45 @@ const Chat = ({socket, userName, room}) => {
      return (
         <div>
             <div className="chat-window">
-                <div className="chat-header">
-                    <h3>Live Chat</h3>
-                </div>
-                <div className="chat-body">
-                    <div className="message-container">
-                        {
-                        messages.map((messageContent) => (
-                                <div className="message" id="you">
-                                    <div className="message-content">
-                                        {messageContent.message}
-                                    </div>
-                                    <div className="message-meta">
-                                        <p id='time'>{messageContent.time}</p>
-                                        <p id='author'>{messageContent.author}</p>
-                                    </div>
-                                </div>
-                            ))
-                        }
+        <div className="chat-header">
+          <h3>Live Chat</h3>
+        </div>
+        <div className="chat-body">
+          <ScrollToBottom className="message-container">
+            {messages.map((messageContent) => {
+              return (
+                <div
+                  className="message"
+                  id={userName === messageContent.author ? "you" : "other"}
+                >
+                  <div>
+                    <div className="message-content">
+                      <p>{messageContent.message}</p>
                     </div>
+                    <div className="message-meta">
+                      <p id="time">{messageContent.time}</p>
+                      <p id="author">{messageContent.author}</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="chat-footer">
-                        <input
-                            type='text'
-                            value={currentMessage}
-                            onChange={e => setCurrentMessage(e.target.value)}
-                            onKeyPress={e => e.key === 'Enter' && sendMessage()}
-                        />
-                        <button onClick={sendMessage}>Send</button>
-                </div>
-                <div>
-                <button onClick={handleLogout} type="button" className="btn btn-danger m-3">Logout</button>
-                </div>
-            </div>
+              );
+            })}
+          </ScrollToBottom>
+        </div>
+        <div className="chat-footer">
+          <input
+            type="text"
+            value={currentMessage}
+            placeholder="Hey..."
+            onChange={(e) => setCurrentMessage(e.target.value)}
+            onKeyPress={(e) => e.key === "Enter" && sendMessage()}
+          />
+          <button onClick={sendMessage}>&#9658;</button>
+        </div>
+      </div>
+      <div>
+      <button onClick={handleLogout} type="button" className="btn btn-danger m-3">Logout</button>
+       </div>
         </div>
     )
 }
