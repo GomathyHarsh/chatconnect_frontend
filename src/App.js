@@ -16,7 +16,7 @@ import ForgotPassword from './Components/ForgotPassword';
 import ResetPassword from './Components/ResetPassword';
 
 
-const socket = io.connect('http://localhost:4000');
+const socket = io.connect('https://chatconnect-backend.onrender.com');
 
 function App() {
   const [user, setUser, loading] = useFindUser();

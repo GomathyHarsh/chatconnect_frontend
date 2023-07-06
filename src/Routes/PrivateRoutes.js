@@ -5,7 +5,7 @@ import JoinChat from "../Components/JoinChat";
 import io from 'socket.io-client';
 
 
-const socket = io.connect('http://localhost:4000');
+const socket = io.connect('https://chatconnect-backend.onrender.com');
 const PrivateRoutes = ({children, ...rest}) => {
     const {user, loading} = useContext(UserContext);
     if(!user){
