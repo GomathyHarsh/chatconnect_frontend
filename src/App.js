@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+
+import './App.css'
+import { useState } from "react";
+import io from 'socket.io-client';
+import { Routes, Route } from 'react-router-dom';
+import UserContext from "./Context/UserContext";
+import useFindUser from "./Hooks/useFindUser";
+
+import Login from "./Components/Login";
+import Register from "./Components/Register";
+import JoinChat from "./Components/JoinChat";
+
+import PublicRoutes from "./Routes/PublicRoutes";
+import PrivateRoutes from "./Routes/PrivateRoutes";
+import ForgotPassword from './Components/ForgotPassword';
+import ResetPassword from './Components/ResetPassword';
+
+
+const socket = io.connect('http://localhost:4000');
 
 function App() {
+  const [user, setUser, loading] = useFindUser();
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={{user, setUser, loading}}>
+      <div>
+          
+          <Routes>
+            <Route element={<PublicRoutes />}>
+              <Route path='/' element={<Login/>} />
+              <Route path='/login' element={<Login />} />
+              <Route path="/register" element={<Register/>} />
+              <Route path="/forgotPassword" element={<ForgotPassword />} />
+              <Route path="/passwordReset" element={<ResetPassword />} />
+             
+            </Route>
+
+            <Route element={<PrivateRoutes />}>
+            <Route path='/chat' element={<JoinChat socket={socket} />}/> 
+            </Route>
+          </Routes>
+      </div>
+    </UserContext.Provider>
   );
 }
 
