@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import ScrollToBottom from 'react-scroll-to-bottom'
 import axios from "axios";
 
 const Chat = ({socket, userName, room}) => {
